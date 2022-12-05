@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "exa-mandelbrot-service"
+version = "0.1.0"
+description = ""
+authors = ["Marcus Lugg <cortado.codes@protonmail.com>"]
+readme = "README.md"
+packages = [{include = "exa_mandelbrot_service"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
