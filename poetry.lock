@@ -408,30 +408,37 @@ python-versions = ">=3.8"
 
 [[package]]
 name = "octue"
-version = "0.41.1"
+version = "0.42.0"
 description = "A package providing template applications for data services, and a python SDK to the Octue API."
 category = "main"
 optional = false
-python-versions = ">=3.7.1,<4.0.0"
+python-versions = "^3.7.1"
+develop = false
 
 [package.dependencies]
 click = ">=7,<9"
-coolname = ">=1.1,<2.0"
+coolname = "^1.1"
 Flask = "2.0.3"
 google-auth = ">=1.27.0,<3"
-google-cloud-pubsub = ">=2.5,<3.0"
-google-cloud-secret-manager = ">=2.3,<3.0"
-google-cloud-storage = ">=1.35.1,<3"
-google-crc32c = ">=1.1,<2.0"
-gunicorn = ">=20.1,<21.0"
+google-cloud-pubsub = "^2.5"
+google-cloud-secret-manager = "^2.3"
+google-cloud-storage = ">=1.35.1, <3"
+google-crc32c = "^1.1"
+gunicorn = "^20.1"
 packaging = ">=20.4,<22"
-python-dateutil = ">=2.8,<3.0"
-pyyaml = ">=6,<7"
-twined = ">=0.5.1,<0.6.0"
+python-dateutil = "^2.8"
+pyyaml = "^6"
+twined = "^0.5.1"
 
 [package.extras]
 dataflow = ["apache-beam (>=2.37,<3.0)", "cachetools (>=3.1.0,<5)", "google-apitools (>=0.5.31,<0.5.32)", "google-auth-httplib2 (>=0.1.0,<0.2.0)", "google-cloud-datastore (>=1.8.0,<2)"]
 hdf5 = ["h5py (>=3.6,<4.0)"]
+
+[package.source]
+type = "git"
+url = "https://github.com/octue/octue-sdk-python.git"
+reference = "feature/support-poetry-based-apps-on-cloud-run"
+resolved_reference = "bea504afe5e3c69c59ee179581662aecb71e240a"
 
 [[package]]
 name = "packaging"
@@ -701,7 +708,7 @@ watchdog = ["watchdog"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "48664eaef812a1f2fd2f49da1d8952527499cfb9cccea7d681597ac43c5d2cfc"
+content-hash = "183932800cf8486d85ff33a059e8bfb8c0a71e6c21e12fdf52f25819e5f4bf4b"
 
 [metadata.files]
 attrs = [
@@ -1005,10 +1012,7 @@ numpy = [
     {file = "numpy-1.23.5-pp38-pypy38_pp73-win_amd64.whl", hash = "sha256:01dd17cbb340bf0fc23981e52e1d18a9d4050792e8fb8363cecbf066a84b827d"},
     {file = "numpy-1.23.5.tar.gz", hash = "sha256:1b1766d6f397c18153d40015ddfc79ddb715cabadc04d2d228d4e5a8bc4ded1a"},
 ]
-octue = [
-    {file = "octue-0.41.1-py3-none-any.whl", hash = "sha256:e542eb986b6ef27c0c36840311efb283fb81de4914b5763d1772cfbb356e147d"},
-    {file = "octue-0.41.1.tar.gz", hash = "sha256:73a85a0370c5e378216cda85f05698444398baa0dc1c655910c34550b8f7269a"},
-]
+octue = []
 packaging = [
     {file = "packaging-21.3-py3-none-any.whl", hash = "sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522"},
     {file = "packaging-21.3.tar.gz", hash = "sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb"},
