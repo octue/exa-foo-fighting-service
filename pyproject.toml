@@ -8,6 +8,8 @@ packages = [{include = "exa_mandelbrot_service"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+octue = "^0.41.1"
+numpy = "^1.23.5"
 
 
 [tool.poetry.group.dev.dependencies]
