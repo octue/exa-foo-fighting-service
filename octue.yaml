@@ -1,0 +1,7 @@
+services:
+  - name: exa-mandelbrot-service
+    namespace: octue
+    project_name: octue-amy
+    region: europe-west2
+    repository_owner: octue
+    repository_name: exa-mandelbrot-service
