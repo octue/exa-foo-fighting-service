@@ -10,6 +10,9 @@ packages = [{include = "exa_mandelbrot_service"}]
 python = "^3.10"
 
 
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^2.20.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
