@@ -23,11 +23,11 @@ class App:
         logger.info("Starting analysis.")
 
         x, y, z = generate_mandelbrot_set(
-            width=self.analysis.configuration_values["width"],
-            height=self.analysis.configuration_values["height"],
-            x_range=self.analysis.configuration_values["x_range"],
-            y_range=self.analysis.configuration_values["y_range"],
-            number_of_iterations=self.analysis.configuration_values["n_iterations"],
+            width=self.analysis.input_values["width"],
+            height=self.analysis.input_values["height"],
+            x_range=self.analysis.input_values["x_range"],
+            y_range=self.analysis.input_values["y_range"],
+            number_of_iterations=self.analysis.input_values["n_iterations"],
         )
 
         # Create the data and layout for the plot.
@@ -35,14 +35,14 @@ class App:
             "x": x.tolist(),
             "y": y.tolist(),
             "z": z.tolist(),
-            "colorscale": self.analysis.configuration_values["color_scale"],
+            "colorscale": self.analysis.input_values["color_scale"],
             "type": "surface",
         }
 
         layout = {
-            "title": f"Mandelbrot set with {self.analysis.configuration_values['n_iterations']} iterations",
-            "width": self.analysis.configuration_values["width"],
-            "height": self.analysis.configuration_values["height"],
+            "title": f"Mandelbrot set with {self.analysis.input_values['n_iterations']} iterations",
+            "width": self.analysis.input_values["width"],
+            "height": self.analysis.input_values["height"],
         }
 
         self.analysis.output_values = {"data": data, "layout": layout}
