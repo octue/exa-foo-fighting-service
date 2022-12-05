@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{include = "exa_mandelbrot_service"}]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.9"
 octue = {git = "https://github.com/octue/octue-sdk-python.git", rev = "feature/support-poetry-based-apps-on-cloud-run"}
 numpy = "^1.23.5"
 

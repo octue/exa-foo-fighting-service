@@ -438,7 +438,7 @@ hdf5 = ["h5py (>=3.6,<4.0)"]
 type = "git"
 url = "https://github.com/octue/octue-sdk-python.git"
 reference = "feature/support-poetry-based-apps-on-cloud-run"
-resolved_reference = "bea504afe5e3c69c59ee179581662aecb71e240a"
+resolved_reference = "29173b24e73cd29009fc9f57a9e2c51a819e5079"
 
 [[package]]
 name = "packaging"
@@ -707,8 +707,8 @@ watchdog = ["watchdog"]
 
 [metadata]
 lock-version = "1.1"
-python-versions = "^3.10"
-content-hash = "183932800cf8486d85ff33a059e8bfb8c0a71e6c21e12fdf52f25819e5f4bf4b"
+python-versions = "^3.9"
+content-hash = "cf438ccf4648ca3a1df82a4f3634178e7a53d4acb91f5207b8ce137f5e9aea3d"
 
 [metadata.files]
 attrs = [
