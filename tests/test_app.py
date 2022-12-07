@@ -15,10 +15,12 @@ class TestApp(unittest.TestCase):
             twine=os.path.join(PACKAGE_ROOT, "twine.json"),
         )
 
+        monitor_messages = []
+
         analysis = runner.run(
             input_values={
-                "width": 400,
-                "height": 600,
+                "width": 100,
+                "height": 100,
                 "n_iterations": 64,
                 "color_scale": "YlGnBu",
                 "type": "png",
@@ -27,11 +29,12 @@ class TestApp(unittest.TestCase):
                 "test_id": 33,
                 "max_duration": 100,
             },
-            handle_monitor_message=print,
+            handle_monitor_message=monitor_messages.append,
         )
 
-        self.assertEqual(analysis.output_values["layout"]["height"], 600)
-        self.assertEqual(analysis.output_values["layout"]["width"], 400)
-        self.assertEqual(len(analysis.output_values["data"]["x"]), 600)
-        self.assertEqual(len(analysis.output_values["data"]["y"]), 600)
-        self.assertEqual(len(analysis.output_values["data"]["z"]), 600)
+        self.assertEqual(analysis.output_values["layout"]["height"], 100)
+        self.assertEqual(analysis.output_values["layout"]["width"], 100)
+        self.assertEqual(len(analysis.output_values["data"]["x"]), 100)
+        self.assertEqual(len(analysis.output_values["data"]["y"]), 100)
+        self.assertEqual(len(analysis.output_values["data"]["z"]), 100)
+        self.assertGreater(len(monitor_messages), 0)
