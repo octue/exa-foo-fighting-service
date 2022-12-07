@@ -18,6 +18,11 @@
         "description": "The ID of the foo-fighting test that this question belongs to.",
         "type": "integer"
       },
+      "max_duration": {
+        "description": "The maximum amount of time in seconds that should be spent calculating the Mandelbrot set.",
+        "type": "number",
+        "minimum": 0
+      },
       "width": {
         "description": "Number of pixels the image contains in the x direction",
         "type": "integer",
