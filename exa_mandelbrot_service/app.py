@@ -44,7 +44,7 @@ class App:
 
             logger.info("Starting analysis for foo-fighting test %s.", self.analysis.input_values["test_id"])
 
-            x, y, z = generate_mandelbrot_set(
+            generate_mandelbrot_set(
                 analysis=self.analysis,
                 width=self.analysis.input_values["width"],
                 height=self.analysis.input_values["height"],
@@ -55,22 +55,8 @@ class App:
                 stop_signal=self._stop,
             )
 
-            # Create the data and layout for the plot.
-            data = {
-                "x": x.tolist(),
-                "y": y.tolist(),
-                "z": z.tolist(),
-                "colorscale": self.analysis.input_values["color_scale"],
-                "type": "surface",
-            }
-
-            layout = {
-                "title": f"Mandelbrot set with {self.analysis.input_values['n_iterations']} iterations",
-                "width": self.analysis.input_values["width"],
-                "height": self.analysis.input_values["height"],
-            }
-
-            self.analysis.output_values = {"data": data, "layout": layout}
+            # Don't return any output as this app is for load testing.
+            self.analysis.output_values = {"data": None, "layout": None}
             logger.info("Finished analysis for foo-fighting test %s.", self.analysis.input_values["test_id"])
 
         finally:

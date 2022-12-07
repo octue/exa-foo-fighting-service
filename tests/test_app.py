@@ -34,11 +34,8 @@ class TestApp(unittest.TestCase):
             handle_monitor_message=monitor_messages.append,
         )
 
-        self.assertEqual(analysis.output_values["layout"]["height"], 100)
-        self.assertEqual(analysis.output_values["layout"]["width"], 100)
-        self.assertEqual(len(analysis.output_values["data"]["x"]), 100)
-        self.assertEqual(len(analysis.output_values["data"]["y"]), 100)
-        self.assertEqual(len(analysis.output_values["data"]["z"]), 100)
+        self.assertIsNone(analysis.output_values["layout"])
+        self.assertIsNone(analysis.output_values["data"])
         self.assertGreater(len(monitor_messages), 0)
 
     def test_app_returns_early_if_duration_limit_reached(self):
