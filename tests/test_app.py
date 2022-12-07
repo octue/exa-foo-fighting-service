@@ -24,7 +24,8 @@ class TestApp(unittest.TestCase):
                 "type": "png",
                 "x_range": [-1.5, 0.6],
                 "y_range": [-1.26, 1.26],
-            }
+            },
+            handle_monitor_message=print,
         )
 
         self.assertEqual(analysis.output_values["layout"]["height"], 600)
