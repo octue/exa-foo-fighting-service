@@ -1,5 +1,6 @@
 import logging
 import time
+from threading import Event
 
 from octue.utils.threads import RepeatingTimer
 
@@ -19,7 +20,7 @@ class App:
         self.analysis = analysis
         self._start_time = time.perf_counter()
         self._duration_checker = None
-        self._stop = False
+        self._stop = Event()
 
     def run(self):
         """Generate a Mandelbrot set and plot it.
@@ -77,4 +78,4 @@ class App:
         :return None:
         """
         if time.perf_counter() - self._start_time > maximum_duration:
-            self._stop = True
+            self._stop.set()
