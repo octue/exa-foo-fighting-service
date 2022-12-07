@@ -72,7 +72,7 @@
         "default": [-1.26, 1.26]
       }
     },
-    "required": ["max_duration"]
+    "required": ["test_id", "max_duration"]
   },
   "monitor_message_schema": {
     "type": "object",
