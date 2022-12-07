@@ -6,3 +6,4 @@ services:
     region: europe-west2
     repository_owner: octue
     repository_name: exa-mandelbrot-service
+    memory: 1Gi
