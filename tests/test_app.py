@@ -24,6 +24,8 @@ class TestApp(unittest.TestCase):
                 "type": "png",
                 "x_range": [-1.5, 0.6],
                 "y_range": [-1.26, 1.26],
+                "test_id": 33,
+                "max_duration": 100,
             },
             handle_monitor_message=print,
         )

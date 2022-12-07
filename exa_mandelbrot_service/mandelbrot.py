@@ -14,6 +14,7 @@ def generate_mandelbrot_set(
     y_range,
     number_of_iterations,
     monitor_message_period=100,
+    stop_signal=False,
 ):
     """Compute the heightmap for a mandelbrot or julia set fractal.
 
@@ -28,6 +29,7 @@ def generate_mandelbrot_set(
     :param int number_of_iterations: the number of iterations limit used to compute the fractal
     :param None|(float, float) c: Optional 2-tuple (or other iterable) containing real and complex parts of constant coefficient c. Giving this argument will result in creation of a julia set, not the default mandelbrot set
     :param int monitor_message_period: the period (in the number of heights calculated) at which to send monitor messages to the parent
+    :param bool stop_signal: if this becomes `True` while the set is still being generated, stop and return the result
     :return (numpy.ndarray, numpy.ndarray, numpy.ndarray): x, y, z values of pixel locations in the x, y complex plane and a corresponding heightmap z, with which you can plot a fancy looking 3d fractal
     """
     # Create a linearly spaced 2d grid
@@ -64,6 +66,10 @@ def generate_mandelbrot_set(
 
         if index[0] % monitor_message_period == 0:
             analysis.send_monitor_message({"x": x_old, "y": y_old, "z": iteration})
+
+        if stop_signal and index[0] % 100 == 0:
+            logger.warning("Stop signal received - returning early.")
+            return x, y, z
 
     logger.info("Mandelbrot set generated.")
     return x, y, z
