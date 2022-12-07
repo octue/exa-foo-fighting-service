@@ -19,9 +19,13 @@
         "type": "integer"
       },
       "max_duration": {
-        "description": "The maximum amount of time in seconds that should be spent calculating the Mandelbrot set.",
+        "description": "The maximum duration of time in seconds that should be spent calculating the Mandelbrot set.",
         "type": "number",
         "minimum": 0
+      },
+      "randomise_duration": {
+        "description": "If `True`, the Mandelbrot set will keep being generated until a random duration of time between 0s and the maximum duration has passed.",
+        "type": "boolean"
       },
       "width": {
         "description": "Number of pixels the image contains in the x direction",
@@ -67,7 +71,8 @@
         "maxItems": 2,
         "default": [-1.26, 1.26]
       }
-    }
+    },
+    "required": ["max_duration"]
   },
   "monitor_message_schema": {
     "type": "object",

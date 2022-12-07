@@ -44,7 +44,7 @@ class TestApp(unittest.TestCase):
     def test_app_returns_early_if_duration_limit_reached(self):
         """Test that the app returns early if the duration limit is reached."""
         with self.assertLogs(
-            logger=logging.getLogger("exa_mandelbrot_service.mandelbrot"),
+            logger=logging.getLogger("exa_mandelbrot_service"),
             level=logging.WARNING,
         ) as logging_context:
             runner = Runner(

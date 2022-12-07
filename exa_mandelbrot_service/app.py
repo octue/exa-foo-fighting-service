@@ -1,4 +1,5 @@
 import logging
+import random
 import time
 from threading import Event
 
@@ -27,6 +28,10 @@ class App:
 
         :return None:
         """
+        if self.analysis.input_values.get("randomise_duration", False):
+            self.analysis.input_values["max_duration"] = random.randint(0, self.analysis.input_values["max_duration"])
+            logger.info("Maximum duration randomised to %d.", self.analysis.input_values["max_duration"])
+
         self._duration_checker = RepeatingTimer(
             interval=self.analysis.configuration_values["duration_check_interval"],
             function=self._check_duration,
@@ -78,4 +83,5 @@ class App:
         :return None:
         """
         if time.perf_counter() - self._start_time > maximum_duration:
+            logger.warning("The maximum duration (%rs) has been reached - sending the stop signal.", maximum_duration)
             self._stop.set()
