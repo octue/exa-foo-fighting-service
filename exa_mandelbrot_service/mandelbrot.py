@@ -32,44 +32,35 @@ def generate_mandelbrot_set(
     :param threading.Event stop_signal: if this becomes `True` while the set is still being generated, stop and return the result
     :return (numpy.ndarray, numpy.ndarray, numpy.ndarray): x, y, z values of pixel locations in the x, y complex plane and a corresponding heightmap z, with which you can plot a fancy looking 3d fractal
     """
-    # Create a linearly spaced 2d grid
-    [x, y] = numpy.meshgrid(
-        numpy.linspace(x_range[0], x_range[1], width),
-        numpy.linspace(y_range[0], y_range[1], height),
-    )
-
-    # Preallocate output array
-    z = numpy.zeros((height, width))
-
-    logger.info("Grid prepared.")
+    x_array = []
+    y_array = []
+    z_array = []
 
     # Simple loop to render the fractal set. This is not efficient python and would be vectorised in production, but the
     # purpose here is just to provide a simple demo.
-    for index, a in numpy.ndenumerate(x):
+    for x in numpy.linspace(x_range[0], x_range[1], width):
+        for i, y in enumerate(numpy.linspace(y_range[0], y_range[1], height)):
+            x_old = 0
+            y_old = 0
+            iteration = 1
 
-        # Get constant c (Mandelbrot sets use spatial coordinates as constants).
-        b = y[index]
-        c = (a, b)
+            while (iteration <= number_of_iterations) and (x_old**2 + y_old**2 < 4):
+                x_new = x_old**2 - y_old**2 + x
+                y_new = 2 * x_old * y_old + y
+                x_old = x_new
+                y_old = y_new
+                iteration += 1
 
-        x_old = 0
-        y_old = 0
-        iteration = 1
+            x_array.append(x)
+            y_array.append(y)
+            z_array.append(iteration)
 
-        while (iteration <= number_of_iterations) and (x_old**2 + y_old**2 < 4):
-            x_new = x_old**2 - y_old**2 + c[0]
-            y_new = 2 * x_old * y_old + c[1]
-            x_old = x_new
-            y_old = y_new
-            iteration += 1
+            if i % monitor_message_period == 0:
+                analysis.send_monitor_message({"x": x_old, "y": y_old, "z": iteration})
 
-        z[index] = iteration
-
-        if index[0] % monitor_message_period == 0:
-            analysis.send_monitor_message({"x": x_old, "y": y_old, "z": iteration})
-
-        if stop_signal.is_set():
-            logger.warning("Stop signal received - returning early.")
-            return x, y, z
+            if stop_signal.is_set():
+                logger.warning("Stop signal received - returning early.")
+                return x_array, y_array, z_array
 
     logger.info("Mandelbrot set generated.")
-    return x, y, z
+    return x_array, y_array, z_array
