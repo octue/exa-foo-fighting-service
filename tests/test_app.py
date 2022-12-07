@@ -9,35 +9,6 @@ PACKAGE_ROOT = os.path.dirname(os.path.dirname(__file__))
 
 
 class TestApp(unittest.TestCase):
-    def test_app(self):
-        """Test that the app can create a simple Mandelbrot set."""
-        runner = Runner(
-            app_src=os.path.join(PACKAGE_ROOT, "exa_mandelbrot_service"),
-            twine=os.path.join(PACKAGE_ROOT, "twine.json"),
-            configuration_values={"duration_check_interval": 10},
-        )
-
-        monitor_messages = []
-
-        analysis = runner.run(
-            input_values={
-                "width": 100,
-                "height": 100,
-                "n_iterations": 64,
-                "color_scale": "YlGnBu",
-                "type": "png",
-                "x_range": [-1.5, 0.6],
-                "y_range": [-1.26, 1.26],
-                "test_id": 33,
-                "max_duration": 100,
-            },
-            handle_monitor_message=monitor_messages.append,
-        )
-
-        self.assertIsNone(analysis.output_values["layout"])
-        self.assertIsNone(analysis.output_values["data"])
-        self.assertGreater(len(monitor_messages), 0)
-
     def test_app_returns_early_if_duration_limit_reached(self):
         """Test that the app returns early if the maximum duration is reached."""
         with self.assertLogs(
@@ -57,8 +28,6 @@ class TestApp(unittest.TestCase):
                     "n_iterations": 64,
                     "color_scale": "YlGnBu",
                     "type": "png",
-                    "x_range": [-1.5, 0.6],
-                    "y_range": [-1.26, 1.26],
                     "test_id": 33,
                     "max_duration": 0,
                 },
@@ -83,8 +52,6 @@ class TestApp(unittest.TestCase):
                     "n_iterations": 64,
                     "color_scale": "YlGnBu",
                     "type": "png",
-                    "x_range": [-1.5, 0.6],
-                    "y_range": [-1.26, 1.26],
                     "test_id": 33,
                     "max_duration": 5,
                     "randomise_duration": True,

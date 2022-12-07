@@ -48,8 +48,6 @@ class App:
                 analysis=self.analysis,
                 width=self.analysis.input_values["width"],
                 height=self.analysis.input_values["height"],
-                x_range=self.analysis.input_values["x_range"],
-                y_range=self.analysis.input_values["y_range"],
                 number_of_iterations=self.analysis.input_values["n_iterations"],
                 monitor_message_period=10000,
                 stop_signal=self._stop,

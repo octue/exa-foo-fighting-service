@@ -8,11 +8,9 @@ logger = logging.getLogger(__name__)
 
 def generate_mandelbrot_set(
     analysis,
-    width,
-    height,
-    x_range,
-    y_range,
     number_of_iterations,
+    width=0.01,
+    height=0.01,
     monitor_message_period=100,
     stop_signal=False,
 ):
@@ -24,8 +22,6 @@ def generate_mandelbrot_set(
     :param octue.resources.Analysis analysis: the analysis that called this function - this must be provided so monitor messages can be sent to the parent periodically
     :param int width: Integer width of the final fractal image in pixels
     :param int height: Integer height of the final fractal image in pixels
-    :param list(float)|numpy.ndarray x_range: The range of x [min, max] for which the fractal will be drawn
-    :param list(float)|numpy.ndarray y_range: The range of y [min, max] for which the fractal will be drawn
     :param int number_of_iterations: the number of iterations limit used to compute the fractal
     :param None|(float, float) c: Optional 2-tuple (or other iterable) containing real and complex parts of constant coefficient c. Giving this argument will result in creation of a julia set, not the default mandelbrot set
     :param int monitor_message_period: the period (in the number of heights calculated) at which to send monitor messages to the parent
@@ -36,9 +32,13 @@ def generate_mandelbrot_set(
     y_array = []
     z_array = []
 
-    # Simple loop to render the fractal set. This is not efficient python and would be vectorised in production, but the
-    # purpose here is just to provide a simple demo.
-    for x in numpy.linspace(x_range[0], x_range[1], width):
+    x = -1.5
+    y_range = -1.26, 1.26
+
+    # Calculate heights until the stop signal is received.
+    while True:
+        x += width
+
         for i, y in enumerate(numpy.linspace(y_range[0], y_range[1], height)):
             x_old = 0
             y_old = 0
@@ -61,6 +61,3 @@ def generate_mandelbrot_set(
             if stop_signal.is_set():
                 logger.warning("Stop signal received - returning early.")
                 return x_array, y_array, z_array
-
-    logger.info("Mandelbrot set generated.")
-    return x_array, y_array, z_array
