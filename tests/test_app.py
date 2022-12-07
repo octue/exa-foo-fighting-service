@@ -14,6 +14,7 @@ class TestApp(unittest.TestCase):
         runner = Runner(
             app_src=os.path.join(PACKAGE_ROOT, "exa_mandelbrot_service"),
             twine=os.path.join(PACKAGE_ROOT, "twine.json"),
+            configuration_values={"duration_check_interval": 10},
         )
 
         monitor_messages = []
