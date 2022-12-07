@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 def generate_mandelbrot_set(
     analysis,
-    number_of_iterations,
+    number_of_iterations=64,
     x_increment=0.01,
     y_increment=0.01,
     monitor_message_period=100,
@@ -20,9 +20,9 @@ def generate_mandelbrot_set(
     c is a function of the position in the complex plane (c = x + iy) or, optionally for a julia set, c is a constant
 
     :param octue.resources.Analysis analysis: the analysis that called this function - this must be provided so monitor messages can be sent to the parent periodically
+    :param int number_of_iterations: the number of iterations limit used to compute the fractal
     :param int x_increment: the amount to increment the x value by between points
     :param int y_increment: the amount to increment the y value by between points
-    :param int number_of_iterations: the number of iterations limit used to compute the fractal
     :param int monitor_message_period: the period (in the number of heights calculated) at which to send monitor messages to the parent
     :param threading.Event stop_signal: if this becomes `True` while the set is still being generated, stop and return the result
     :return (numpy.ndarray, numpy.ndarray, numpy.ndarray): x, y, z values of pixel locations in the x, y complex plane and a corresponding heightmap z, with which you can plot a fancy looking 3d fractal

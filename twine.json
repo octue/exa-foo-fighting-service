@@ -26,50 +26,6 @@
       "randomise_duration": {
         "description": "If `True`, the Mandelbrot set will keep being generated until a random duration of time between 0s and the maximum duration has passed.",
         "type": "boolean"
-      },
-      "width": {
-        "description": "Number of pixels the image contains in the x direction",
-        "type": "integer",
-        "minimum": 2,
-        "default": 600
-      },
-      "height": {
-        "description": "Number of pixels the image contains in the y direction",
-        "type": "integer",
-        "minimum": 2,
-        "default": 600
-      },
-      "n_iterations": {
-        "description": "Number of iterations used to render each pixel",
-        "type": "integer",
-        "minimum": 2,
-        "default": 64
-      },
-      "color_scale": {
-        "description": "The colour scale string to use when mapping colours. See https://plot.ly/ipython-notebooks/color-scales/ for valid scales",
-        "type": "string",
-        "enum": ["PuBu", "YlGnBu"],
-        "default": "YlGnBu"
-      },
-      "x_range": {
-        "description": "The x_min to x_max range of space in which to render the fractal",
-        "type": "array",
-        "items": {
-          "type": "number"
-        },
-        "minItems": 2,
-        "maxItems": 2,
-        "default": [-1.5, 0.6]
-      },
-      "y_range": {
-        "description": "The y_min to y_max range of space in which to render the fractal",
-        "type": "array",
-        "items": {
-          "type": "number"
-        },
-        "minItems": 2,
-        "maxItems": 2,
-        "default": [-1.26, 1.26]
       }
     },
     "required": ["test_id", "max_duration"]

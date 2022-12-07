@@ -23,9 +23,6 @@ class TestApp(unittest.TestCase):
 
             runner.run(
                 input_values={
-                    "width": 100,
-                    "height": 100,
-                    "n_iterations": 64,
                     "test_id": 33,
                     "max_duration": 0,
                 },
@@ -45,11 +42,8 @@ class TestApp(unittest.TestCase):
 
             runner.run(
                 input_values={
-                    "width": 200,
-                    "height": 200,
-                    "n_iterations": 64,
                     "test_id": 33,
-                    "max_duration": 5,
+                    "max_duration": 2,
                     "randomise_duration": True,
                 },
                 handle_monitor_message=[].append,
