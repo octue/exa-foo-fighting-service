@@ -38,7 +38,7 @@ def generate_mandelbrot_set(
     while True:
         x += x_increment
 
-        for i, y in enumerate(numpy.linspace(y_range[0], y_range[1], y_increment)):
+        for i, y in enumerate(numpy.arange(y_range[0], y_range[1], y_increment)):
             x_old = 0
             y_old = 0
             iteration = 1
