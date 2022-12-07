@@ -46,8 +46,8 @@ class App:
 
             generate_mandelbrot_set(
                 analysis=self.analysis,
-                width=self.analysis.input_values["width"],
-                height=self.analysis.input_values["height"],
+                x_increment=self.analysis.input_values["width"],
+                y_increment=self.analysis.input_values["height"],
                 number_of_iterations=self.analysis.input_values["n_iterations"],
                 monitor_message_period=10000,
                 stop_signal=self._stop,

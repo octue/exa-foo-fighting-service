@@ -9,8 +9,8 @@ logger = logging.getLogger(__name__)
 def generate_mandelbrot_set(
     analysis,
     number_of_iterations,
-    width=0.01,
-    height=0.01,
+    x_increment=0.01,
+    y_increment=0.01,
     monitor_message_period=100,
     stop_signal=False,
 ):
@@ -20,8 +20,8 @@ def generate_mandelbrot_set(
     c is a function of the position in the complex plane (c = x + iy) or, optionally for a julia set, c is a constant
 
     :param octue.resources.Analysis analysis: the analysis that called this function - this must be provided so monitor messages can be sent to the parent periodically
-    :param int width: Integer width of the final fractal image in pixels
-    :param int height: Integer height of the final fractal image in pixels
+    :param int x_increment: the amount to increment the x value by between points
+    :param int y_increment: the amount to increment the y value by between points
     :param int number_of_iterations: the number of iterations limit used to compute the fractal
     :param int monitor_message_period: the period (in the number of heights calculated) at which to send monitor messages to the parent
     :param threading.Event stop_signal: if this becomes `True` while the set is still being generated, stop and return the result
@@ -36,9 +36,9 @@ def generate_mandelbrot_set(
 
     # Calculate heights until the stop signal is received.
     while True:
-        x += width
+        x += x_increment
 
-        for i, y in enumerate(numpy.linspace(y_range[0], y_range[1], height)):
+        for i, y in enumerate(numpy.linspace(y_range[0], y_range[1], y_increment)):
             x_old = 0
             y_old = 0
             iteration = 1
