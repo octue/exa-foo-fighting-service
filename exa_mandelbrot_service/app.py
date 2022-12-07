@@ -30,7 +30,7 @@ class App:
         """
         if self.analysis.input_values.get("randomise_duration", False):
             self.analysis.input_values["max_duration"] = random.randint(0, self.analysis.input_values["max_duration"])
-            logger.info("Maximum duration randomised to %d.", self.analysis.input_values["max_duration"])
+            logger.info("Maximum duration randomised to %ds.", self.analysis.input_values["max_duration"])
 
         self._duration_checker = RepeatingTimer(
             interval=self.analysis.configuration_values["duration_check_interval"],
