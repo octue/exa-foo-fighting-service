@@ -1,4 +1,9 @@
+import logging
+
 import numpy
+
+
+logger = logging.getLogger(__name__)
 
 
 def generate_mandelbrot_set(
@@ -34,6 +39,8 @@ def generate_mandelbrot_set(
     # Preallocate output array
     z = numpy.zeros((height, width))
 
+    logger.info("Grid prepared.")
+
     # Simple loop to render the fractal set. This is not efficient python and would be vectorised in production, but the
     # purpose here is just to provide a simple demo.
     for index, a in numpy.ndenumerate(x):
@@ -58,4 +65,5 @@ def generate_mandelbrot_set(
         if index[0] % monitor_message_period == 0:
             analysis.send_monitor_message({"x": x_old, "y": y_old, "z": iteration})
 
+    logger.info("Mandelbrot set generated.")
     return x, y, z
