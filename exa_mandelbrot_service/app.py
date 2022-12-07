@@ -27,7 +27,7 @@ class App:
         :return None:
         """
         self._duration_checker = RepeatingTimer(
-            interval=10,
+            interval=self.analysis.configuration_values["duration_check_interval"],
             function=self._check_duration,
             kwargs={"maximum_duration": self.analysis.input_values["max_duration"]},
         )

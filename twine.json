@@ -1,4 +1,14 @@
 {
+  "configuration_values_schema": {
+    "type": "object",
+    "properties": {
+      "duration_check_interval": {
+        "type": "number",
+        "minimum": 0,
+        "default": 10
+      }
+    }
+  },
   "input_values_schema": {
     "title": "Configuration for a simple app",
     "description": "The app creates a mandelbrot or julia plot",
