@@ -23,7 +23,6 @@ def generate_mandelbrot_set(
     :param int width: Integer width of the final fractal image in pixels
     :param int height: Integer height of the final fractal image in pixels
     :param int number_of_iterations: the number of iterations limit used to compute the fractal
-    :param None|(float, float) c: Optional 2-tuple (or other iterable) containing real and complex parts of constant coefficient c. Giving this argument will result in creation of a julia set, not the default mandelbrot set
     :param int monitor_message_period: the period (in the number of heights calculated) at which to send monitor messages to the parent
     :param threading.Event stop_signal: if this becomes `True` while the set is still being generated, stop and return the result
     :return (numpy.ndarray, numpy.ndarray, numpy.ndarray): x, y, z values of pixel locations in the x, y complex plane and a corresponding heightmap z, with which you can plot a fancy looking 3d fractal
