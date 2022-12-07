@@ -20,7 +20,7 @@ class App:
 
         :return None:
         """
-        logger.info("Starting analysis.")
+        logger.info("Starting analysis for foo-fighting test %s.", self.analysis.input_values["test_id"])
 
         x, y, z = generate_mandelbrot_set(
             analysis=self.analysis,
@@ -48,4 +48,4 @@ class App:
         }
 
         self.analysis.output_values = {"data": data, "layout": layout}
-        logger.info("Finished analysis.")
+        logger.info("Finished analysis for foo-fighting test %s.", self.analysis.input_values["test_id"])

@@ -4,6 +4,10 @@
     "description": "The app creates a mandelbrot or julia plot",
     "type": "object",
     "properties": {
+      "test_id": {
+        "description": "The ID of the foo-fighting test that this question belongs to.",
+        "type": "integer"
+      },
       "width": {
         "description": "Number of pixels the image contains in the x direction",
         "type": "integer",
@@ -47,16 +51,6 @@
         "minItems": 2,
         "maxItems": 2,
         "default": [-1.26, 1.26]
-      },
-      "julia_c": {
-        "description": "Optional constant coefficients a and b (c = a + ib). If specified, a Julia set is created instead of the default mandelbrot set.",
-        "type": "array",
-        "items": {
-          "type": "number"
-        },
-        "additionalItems": false,
-        "minItems": 2,
-        "maxItems": 2
       }
     }
   },
