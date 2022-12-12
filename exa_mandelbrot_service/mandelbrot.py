@@ -52,8 +52,8 @@ def generate_mandelbrot_set(
             y_array.append(y)
             z_array.append(iteration)
 
-            if i % monitor_message_period == 0:
-                analysis.send_monitor_message({"x": x_old, "y": y_old, "z": iteration})
+            # if i % monitor_message_period == 0:
+            #     analysis.send_monitor_message({"x": x_old, "y": y_old, "z": iteration})
 
             if stop_signal.is_set():
                 logger.warning("Stop signal received - returning early.")
