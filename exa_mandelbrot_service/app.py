@@ -12,19 +12,21 @@ logger = logging.getLogger(__name__)
 
 
 class App:
-    def __init__(self, analysis):
-        """Construct an Octue app to be run as a service.
+    """An Octue app that generates a Mandelbrot set until the maximum duration is reached.
 
-        :param octue.resources.Analysis analysis:
-        :return None:
-        """
+    :param octue.resources.Analysis analysis:
+    :return None:
+    """
+
+    def __init__(self, analysis):
         self.analysis = analysis
         self._start_time = time.perf_counter()
         self._duration_checker = None
         self._stop = Event()
 
     def run(self):
-        """Generate a Mandelbrot set and plot it.
+        """Generate a Mandelbrot set until the maximum duration is reached. The duration can be randomised within the
+        range 0 <= t <= `max_duration`.
 
         :return None:
         """
