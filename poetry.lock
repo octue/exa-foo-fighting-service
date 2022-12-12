@@ -438,7 +438,7 @@ hdf5 = ["h5py (>=3.6,<4.0)"]
 type = "git"
 url = "https://github.com/octue/octue-sdk-python.git"
 reference = "feature/support-poetry-based-apps-on-cloud-run"
-resolved_reference = "0ac915054de9ea70d766e4b8cd068429b324fd92"
+resolved_reference = "43fac9a457168f35a4175c17d17a77c796b3b870"
 
 [[package]]
 name = "packaging"
