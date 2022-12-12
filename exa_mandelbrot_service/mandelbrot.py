@@ -11,7 +11,7 @@ def generate_mandelbrot_set(
     number_of_iterations=64,
     x_increment=0.01,
     y_increment=0.01,
-    monitor_message_period=100000,
+    monitor_message_period=10,
     stop_signal=False,
 ):
     """Compute the heightmap for a Mandelbrot set until the stop signal is received. Note that this is implemented
@@ -21,7 +21,7 @@ def generate_mandelbrot_set(
     :param int number_of_iterations: the number of iterations limit used to compute the fractal
     :param int x_increment: the amount to increment the x value by between points
     :param int y_increment: the amount to increment the y value by between points
-    :param int monitor_message_period: the period (in the number of heights calculated) at which to send monitor messages to the parent
+    :param int|float monitor_message_period: the period in seconds at which to send monitor messages to the parent
     :param threading.Event stop_signal: when this becomes `True`, stop and return the Mandelbrot set so far
     :return (numpy.ndarray, numpy.ndarray, numpy.ndarray): x, y, z values of pixel locations in the x, y complex plane and a corresponding heightmap z, with which you can plot a fancy looking 3d fractal
     """
@@ -31,6 +31,11 @@ def generate_mandelbrot_set(
 
     x = -1.5
     y_range = -1.26, 1.26
+
+    analysis.set_up_periodic_monitor_message(
+        create_monitor_message=lambda: {"x": x_old, "y": y_old, "z": iteration},
+        period=monitor_message_period,
+    )
 
     # Calculate heights until the stop signal is received.
     while True:
@@ -51,9 +56,6 @@ def generate_mandelbrot_set(
             x_array.append(x)
             y_array.append(y)
             z_array.append(iteration)
-
-            if i % monitor_message_period == 0:
-                analysis.send_monitor_message({"x": x_old, "y": y_old, "z": iteration})
 
             if stop_signal.is_set():
                 logger.warning("Stop signal received - returning early.")

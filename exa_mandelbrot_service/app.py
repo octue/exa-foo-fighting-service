@@ -45,7 +45,7 @@ class App:
             self._duration_checker.start()
 
             logger.info("Starting analysis for foo-fighting test %s.", self.analysis.input_values["test_id"])
-            generate_mandelbrot_set(analysis=self.analysis, monitor_message_period=1000000, stop_signal=self._stop)
+            generate_mandelbrot_set(analysis=self.analysis, stop_signal=self._stop)
 
             # Don't return any meaningful output as this app is for load testing.
             self.analysis.output_values = {"data": None, "layout": None}
