@@ -4,8 +4,7 @@
     "properties": {
       "duration_check_interval": {
         "type": "number",
-        "minimum": 0,
-        "default": 10
+        "minimum": 0
       }
     }
   },
