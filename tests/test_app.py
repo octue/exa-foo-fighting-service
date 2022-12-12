@@ -23,7 +23,7 @@ class TestApp(unittest.TestCase):
 
             runner.run(
                 input_values={
-                    "test_id": 33,
+                    "test_id": "33",
                     "max_duration": 0,
                 },
                 handle_monitor_message=[].append,
@@ -42,7 +42,7 @@ class TestApp(unittest.TestCase):
 
             runner.run(
                 input_values={
-                    "test_id": 33,
+                    "test_id": "33",
                     "max_duration": 2,
                     "randomise_duration": True,
                 },

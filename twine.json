@@ -15,7 +15,7 @@
     "properties": {
       "test_id": {
         "description": "The ID of the foo-fighting test that this question belongs to.",
-        "type": "integer"
+        "type": "string"
       },
       "max_duration": {
         "description": "The maximum duration of time in seconds that should be spent calculating the Mandelbrot set.",
