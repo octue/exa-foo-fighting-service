@@ -11,7 +11,7 @@ def generate_mandelbrot_set(
     number_of_iterations=64,
     x_increment=0.01,
     y_increment=0.01,
-    monitor_message_period=100,
+    monitor_message_period=100000,
     stop_signal=False,
 ):
     """Compute the heightmap for a Mandelbrot set until the stop signal is received. Note that this is implemented
@@ -52,8 +52,8 @@ def generate_mandelbrot_set(
             y_array.append(y)
             z_array.append(iteration)
 
-            # if i % monitor_message_period == 0:
-            #     analysis.send_monitor_message({"x": x_old, "y": y_old, "z": iteration})
+            if i % monitor_message_period == 0:
+                analysis.send_monitor_message({"x": x_old, "y": y_old, "z": iteration})
 
             if stop_signal.is_set():
                 logger.warning("Stop signal received - returning early.")
