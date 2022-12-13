@@ -8,7 +8,7 @@ packages = [{include = "exa_mandelbrot_service"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-octue = "0.42.0"
+octue = { git = "https://github.com/octue/octue-sdk-python", rev = "fix/fix-non-returning-cloud-run-services" }
 numpy = "^1.23.5"
 
 
