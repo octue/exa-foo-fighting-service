@@ -1,5 +1,5 @@
 {
   "configuration_values": {
-    "duration_check_interval": 10
+    "duration_check_interval": 1
   }
 }
