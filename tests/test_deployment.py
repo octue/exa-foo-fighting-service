@@ -1,4 +1,3 @@
-import logging
 import os
 import unittest
 import uuid
@@ -8,7 +7,6 @@ from octue.log_handlers import apply_log_handler
 from octue.resources import Child
 
 
-logger = logging.getLogger(__name__)
 apply_log_handler()
 
 
@@ -27,10 +25,7 @@ class TestCloudRunDeployment(TestCase):
         """Test that the Google Cloud Run example deployment works, providing a service that can be asked questions and
         send responses.
         """
-        answer = self.child.ask(
-            input_values={"test_id": str(uuid.uuid4()), "max_duration": 10},
-            handle_monitor_message=lambda data: logger.info("Monitor message received: %r", data),
-        )
+        answer = self.child.ask(input_values={"test_id": str(uuid.uuid4()), "max_duration": 10})
 
         # Check the outputs are `None`.
         self.assertEqual(answer, {"output_values": {"data": None, "layout": None}, "output_manifest": None})
