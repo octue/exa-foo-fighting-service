@@ -38,7 +38,7 @@ def generate_mandelbrot_set(
     )
 
     # Calculate heights until the stop signal is received.
-    while True:
+    while not stop_signal.is_set():
         x += x_increment
 
         for i, y in enumerate(numpy.arange(y_range[0], y_range[1], y_increment)):
@@ -57,6 +57,5 @@ def generate_mandelbrot_set(
             y_array.append(y)
             z_array.append(iteration)
 
-            if stop_signal.is_set():
-                logger.warning("Stop signal received - returning early.")
-                return x_array, y_array, z_array
+    logger.warning("Stop signal received - returning.")
+    return x_array, y_array, z_array

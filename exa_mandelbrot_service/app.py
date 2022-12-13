@@ -54,7 +54,7 @@ class App:
 
         finally:
             self._duration_checker.cancel()
-            logger.info("Duration checker thread cancelled.")
+            logger.info("Duration checker thread stopped.")
 
     def _check_duration(self, maximum_duration):
         """Check that the analysis duration hasn't exceeded the maximum duration. If it has, tell the analysis to stop.
