@@ -32,6 +32,12 @@ def generate_mandelbrot_set(
     x = -1.5
     y_range = -1.26, 1.26
 
+    # I cannot get this to work as it messes up gRPC and/or Pub/Sub even when I use locks on the publisher.
+    # analysis.set_up_periodic_monitor_message(
+    #     create_monitor_message = lambda: {"x": x_old, "y": y_old, "z": iteration},
+    #     period = monitor_message_period,
+    # )
+
     # Calculate heights until the stop signal is received.
     while True:
         x += x_increment
