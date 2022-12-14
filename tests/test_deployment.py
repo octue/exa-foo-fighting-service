@@ -25,7 +25,8 @@ class TestCloudRunDeployment(TestCase):
         """Test that the Google Cloud Run example deployment works, providing a service that can be asked questions and
         send responses.
         """
-        answer = self.child.ask(input_values={"test_id": str(uuid.uuid4()), "max_duration": 10})
+        test_id = str(uuid.uuid4())
+        answer = self.child.ask(input_values={"test_id": test_id, "max_duration": 10}, question_uuid=test_id)
 
         # Check the outputs are `None`.
         self.assertEqual(answer, {"output_values": {"data": None, "layout": None}, "output_manifest": None})

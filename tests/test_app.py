@@ -29,7 +29,7 @@ class TestApp(unittest.TestCase):
                 handle_monitor_message=[].append,
             )
 
-        self.assertEqual(logging_context.records[0].message, "Stop signal received - returning early.")
+        self.assertEqual(logging_context.records[0].message, "Stop signal received - returning.")
 
     def test_app_with_randomised_duration(self):
         """Test that the maximum duration can be randomised."""
