@@ -4,7 +4,7 @@ A service for demonstrating `octue` inter-service communication using `octue/exa
 
 ## Usage
 
-The service's SRUID (service revision unique identifier) is `octue/exa-foo-fighting-service:foamy-gopher`. Questions
+The service's SRUID (service revision unique identifier) is `octue/exa-foo-fighting-service:purring-peccary`. Questions
 can be sent to it in the following format (see the schema in [twine.json](./twine.json)):
 
 ```python
