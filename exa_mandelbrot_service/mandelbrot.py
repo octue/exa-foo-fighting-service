@@ -32,11 +32,6 @@ def generate_mandelbrot_set(
     x = -1.5
     y_range = -1.26, 1.26
 
-    analysis.set_up_periodic_monitor_message(
-        create_monitor_message=lambda: {"x": x_old, "y": y_old, "z": iteration},
-        period=monitor_message_period,
-    )
-
     # Calculate heights until the stop signal is received.
     while True:
         x += x_increment
@@ -45,6 +40,9 @@ def generate_mandelbrot_set(
             x_old = 0
             y_old = 0
             iteration = 1
+
+            if i % 1e6 == 0:
+                analysis.send_monitor_message({"x": x_old, "y": y_old, "z": iteration})
 
             while (iteration <= number_of_iterations) and (x_old**2 + y_old**2 < 4):
                 x_new = x_old**2 - y_old**2 + x
