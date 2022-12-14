@@ -40,21 +40,16 @@ class App:
             kwargs={"maximum_duration": self.analysis.input_values["max_duration"]},
         )
 
-        try:
-            self._duration_checker.daemon = True
-            self._duration_checker.start()
+        self._duration_checker.daemon = True
+        self._duration_checker.start()
 
-            logger.info("Starting analysis for foo-fighting test %s.", self.analysis.input_values["test_id"])
-            generate_mandelbrot_set(analysis=self.analysis, stop_signal=self._stop)
+        logger.info("Starting analysis for foo-fighting test %s.", self.analysis.input_values["test_id"])
+        generate_mandelbrot_set(analysis=self.analysis, stop_signal=self._stop)
 
-            # Don't return any meaningful output as this app is for load testing.
-            self.analysis.output_values = {"data": None, "layout": None}
+        # Don't return any meaningful output as this app is for load testing.
+        self.analysis.output_values = {"data": None, "layout": None}
 
-            logger.info("Finished analysis for foo-fighting test %s.", self.analysis.input_values["test_id"])
-
-        finally:
-            self._duration_checker.cancel()
-            logger.info("Duration checker thread stopped.")
+        logger.info("Finished analysis for foo-fighting test %s.", self.analysis.input_values["test_id"])
 
     def _check_duration(self, maximum_duration):
         """Check that the analysis duration hasn't exceeded the maximum duration. If it has, tell the analysis to stop.
@@ -65,3 +60,5 @@ class App:
         if time.perf_counter() - self._start_time > maximum_duration:
             logger.warning("The maximum duration (%rs) has been reached - sending the stop signal.", maximum_duration)
             self._stop.set()
+            self._duration_checker.cancel()
+            logger.info("Duration checker thread stopped.")
