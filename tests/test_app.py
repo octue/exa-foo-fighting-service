@@ -12,13 +12,13 @@ class TestApp(unittest.TestCase):
     def test_app_returns_early_if_duration_limit_reached(self):
         """Test that the app returns early if the maximum duration is reached in duration mode."""
         runner = Runner(
-            app_src=os.path.join(PACKAGE_ROOT, "exa_mandelbrot_service"),
+            app_src=os.path.join(PACKAGE_ROOT, "exa_foo_fighting_service"),
             twine=os.path.join(PACKAGE_ROOT, "twine.json"),
             configuration_values={"duration_check_interval": 0.1},
         )
 
         with self.assertLogs(
-            logger=logging.getLogger("exa_mandelbrot_service"),
+            logger=logging.getLogger("exa_foo_fighting_service"),
             level=logging.WARNING,
         ) as logging_context:
             runner.run(
@@ -34,7 +34,7 @@ class TestApp(unittest.TestCase):
     def test_app_with_randomised_duration(self):
         """Test that the maximum duration can be randomised in duration mode."""
         runner = Runner(
-            app_src=os.path.join(PACKAGE_ROOT, "exa_mandelbrot_service"),
+            app_src=os.path.join(PACKAGE_ROOT, "exa_foo_fighting_service"),
             twine=os.path.join(PACKAGE_ROOT, "twine.json"),
             configuration_values={"duration_check_interval": 0.1},
         )
@@ -54,7 +54,7 @@ class TestApp(unittest.TestCase):
     def test_app_in_grid_size_mode(self):
         """Test that the app can be run with a grid of a specific size in grid mode."""
         runner = Runner(
-            app_src=os.path.join(PACKAGE_ROOT, "exa_mandelbrot_service"),
+            app_src=os.path.join(PACKAGE_ROOT, "exa_foo_fighting_service"),
             twine=os.path.join(PACKAGE_ROOT, "twine.json"),
             configuration_values={"duration_check_interval": 0.1},
         )

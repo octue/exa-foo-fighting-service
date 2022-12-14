@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "exa-mandelbrot-service"
+name = "exa-foo-fighting-service"
 version = "0.1.0"
 description = ""
 authors = ["Marcus Lugg <cortado.codes@protonmail.com>"]
 readme = "README.md"
-packages = [{include = "exa_mandelbrot_service"}]
+packages = [{include = "exa_foo_fighting_service"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"

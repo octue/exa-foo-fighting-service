@@ -1,7 +1,7 @@
 services:
-  - name: exa-mandelbrot-service
+  - name: exa-foo-fighting-service
     namespace: octue
-    app_source_path: exa_mandelbrot_service
+    app_source_path: exa_foo_fighting_service
     app_configuration_path: app_configuration.json
     project_name: octue-amy
     region: europe-west2

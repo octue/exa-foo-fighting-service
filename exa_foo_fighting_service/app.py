@@ -6,7 +6,7 @@ from threading import Event
 import numpy as np
 from octue.utils.threads import RepeatingTimer
 
-from exa_mandelbrot_service.mandelbrot import generate_mandelbrot_set
+from exa_foo_fighting_service.mandelbrot import generate_mandelbrot_set
 
 
 logger = logging.getLogger(__name__)
