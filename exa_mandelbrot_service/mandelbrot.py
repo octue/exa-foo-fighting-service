@@ -1,16 +1,15 @@
 import logging
 
-import numpy
-
 
 logger = logging.getLogger(__name__)
 
 
 def generate_mandelbrot_set(
     analysis,
+    x_array,
+    y_array,
+    z_array,
     number_of_iterations=64,
-    x_increment=0.01,
-    y_increment=0.01,
     monitor_message_period=10,
     stop_signal=False,
 ):
@@ -19,19 +18,12 @@ def generate_mandelbrot_set(
 
     :param octue.resources.Analysis analysis: the analysis that called this function - this must be provided so monitor messages can be sent to the parent periodically
     :param int number_of_iterations: the number of iterations limit used to compute the fractal
-    :param int x_increment: the amount to increment the x value by between points
-    :param int y_increment: the amount to increment the y value by between points
+    :param int width: the width of the grid in pixels to calculate the Mandelbrot set over
+    :param int height: the height of the grid in pixels to calculate the Mandelbrot set over
     :param int|float monitor_message_period: the period in seconds at which to send monitor messages to the parent
     :param threading.Event stop_signal: when this becomes `True`, stop and return the Mandelbrot set so far
-    :return (numpy.ndarray, numpy.ndarray, numpy.ndarray): x, y, z values of pixel locations in the x, y complex plane and a corresponding heightmap z, with which you can plot a fancy looking 3d fractal
+    :return None:
     """
-    x_array = []
-    y_array = []
-    z_array = []
-
-    x = -1.5
-    y_range = -1.26, 1.26
-
     # I cannot get this to work as it messes up gRPC and/or Pub/Sub even when I use locks on the publisher.
     # analysis.set_up_periodic_monitor_message(
     #     create_monitor_message = lambda: {"x": x_old, "y": y_old, "z": iteration},
@@ -39,10 +31,8 @@ def generate_mandelbrot_set(
     # )
 
     # Calculate heights until the stop signal is received.
-    while True:
-        x += x_increment
-
-        for i, y in enumerate(numpy.arange(y_range[0], y_range[1], y_increment)):
+    for i, x in enumerate(x_array):
+        for j, y in enumerate(y_array):
             x_old = 0
             y_old = 0
             iteration = 1
@@ -60,8 +50,6 @@ def generate_mandelbrot_set(
 
                 if stop_signal.is_set():
                     logger.warning("Stop signal received - returning.")
-                    return x_array, y_array, z_array
+                    return
 
-            x_array.append(x)
-            y_array.append(y)
-            z_array.append(iteration)
+            z_array[i, j] = iteration

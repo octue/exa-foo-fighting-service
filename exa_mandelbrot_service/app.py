@@ -3,6 +3,7 @@ import random
 import time
 from threading import Event
 
+import numpy as np
 from octue.utils.threads import RepeatingTimer
 
 from exa_mandelbrot_service.mandelbrot import generate_mandelbrot_set
@@ -30,6 +31,20 @@ class App:
 
         :return None:
         """
+        logger.info("Starting analysis for foo-fighting test %s.", self.analysis.input_values["test_id"])
+
+        if "max_duration" in self.analysis.input_values:
+            self._calculate_mandelbrot_for_specified_duration()
+        else:
+            self._calculate_mandelbrot_for_specified_grid()
+
+        # Don't return any meaningful output as this app is just for load testing.
+        self.analysis.output_values = {"data": None, "layout": None}
+        logger.info("Finished analysis for foo-fighting test %s.", self.analysis.input_values["test_id"])
+
+    def _calculate_mandelbrot_for_specified_duration(self):
+        logger.info("Running for specified duration.")
+
         if self.analysis.input_values.get("randomise_duration", False):
             self.analysis.input_values["max_duration"] = random.randint(0, self.analysis.input_values["max_duration"])
             logger.info("Maximum duration randomised to %ds.", self.analysis.input_values["max_duration"])
@@ -43,13 +58,19 @@ class App:
         self._duration_checker.daemon = True
         self._duration_checker.start()
 
-        logger.info("Starting analysis for foo-fighting test %s.", self.analysis.input_values["test_id"])
-        generate_mandelbrot_set(analysis=self.analysis, stop_signal=self._stop)
+        x_range = (-2, 2)
+        y_range = (-1.26, 1.26)
 
-        # Don't return any meaningful output as this app is for load testing.
-        self.analysis.output_values = {"data": None, "layout": None}
+        # Pre-allocate the arrays in memory here to avoid increasing memory usage over time.
+        x_array = np.linspace(x_range[0], x_range[1], 100)
+        y_array = np.linspace(y_range[0], y_range[1], 100)
+        z_array = np.zeros((100, 100))
 
-        logger.info("Finished analysis for foo-fighting test %s.", self.analysis.input_values["test_id"])
+        while not self._stop.is_set():
+            generate_mandelbrot_set(self.analysis, x_array, y_array, z_array, stop_signal=self._stop)
+
+    def _calculate_mandelbrot_for_specified_grid(self):
+        logger.info("Running for specified grid size.")
 
     def _check_duration(self, maximum_duration):
         """Check that the analysis duration hasn't exceeded the maximum duration. If it has, tell the analysis to stop.

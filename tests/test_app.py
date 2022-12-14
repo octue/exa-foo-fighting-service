@@ -49,4 +49,4 @@ class TestApp(unittest.TestCase):
                 handle_monitor_message=[].append,
             )
 
-        self.assertIn("Maximum duration randomised to", logging_context.records[0].message)
+        self.assertIn("Maximum duration randomised to", logging_context.records[2].message)
