@@ -47,8 +47,9 @@ def generate_mandelbrot_set(
             y_old = 0
             iteration = 1
 
-            if i % 1e9 == 0:
-                analysis.send_monitor_message({"x": x_old, "y": y_old, "z": iteration})
+            # This ends up sending too many monitor messages and then no other messages reach the parent.
+            # if i % 1e9 == 0:
+            #     analysis.send_monitor_message({"x": x_old, "y": y_old, "z": iteration})
 
             while (iteration <= number_of_iterations) and (x_old**2 + y_old**2 < 4):
                 x_new = x_old**2 - y_old**2 + x
