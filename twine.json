@@ -9,25 +9,49 @@
     }
   },
   "input_values_schema": {
-    "title": "Configuration for a simple app",
-    "description": "The app creates a mandelbrot or julia plot",
-    "type": "object",
-    "properties": {
-      "test_id": {
-        "description": "The ID of the foo-fighting test that this question belongs to.",
-        "type": "string"
+    "oneOf": [
+      {
+        "title": "Inputs for generating a Mandelbrot set for a given or random duration of time.",
+        "type": "object",
+        "properties": {
+          "test_id": {
+            "description": "The ID of the foo-fighting test that this question belongs to.",
+            "type": "string"
+          },
+          "max_duration": {
+            "description": "The maximum duration of time in seconds that should be spent calculating the Mandelbrot set.",
+            "type": "number",
+            "minimum": 0
+          },
+          "randomise_duration": {
+            "description": "If `True`, the Mandelbrot set will keep being generated until a random duration of time between 0s and the maximum duration has passed.",
+            "type": "boolean"
+          }
+        },
+        "required": ["test_id", "max_duration"]
       },
-      "max_duration": {
-        "description": "The maximum duration of time in seconds that should be spent calculating the Mandelbrot set.",
-        "type": "number",
-        "minimum": 0
-      },
-      "randomise_duration": {
-        "description": "If `True`, the Mandelbrot set will keep being generated until a random duration of time between 0s and the maximum duration has passed.",
-        "type": "boolean"
+      {
+        "title": "Inputs for generating a Mandelbrot set of a given grid size.",
+        "type": "object",
+        "properties": {
+          "test_id": {
+            "description": "The ID of the foo-fighting test that this question belongs to.",
+            "type": "string"
+          },
+          "width": {
+            "description": "The number of points to compute along the width of the grid.",
+            "type": "integer",
+            "minimum": 0
+          },
+          "height": {
+            "description": "The number of points to compute along the height of the grid.",
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": ["test_id", "width", "height"]
       }
-    },
-    "required": ["test_id", "max_duration"]
+    ]
   },
   "monitor_message_schema": {
     "type": "object",
