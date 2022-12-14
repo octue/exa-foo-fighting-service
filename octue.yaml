@@ -6,5 +6,5 @@ services:
     project_name: octue-amy
     region: europe-west2
     repository_owner: octue
-    repository_name: exa-mandelbrot-service
+    repository_name: exa-foo-fighting-service
     memory: 1Gi
