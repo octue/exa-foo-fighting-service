@@ -24,11 +24,11 @@ def generate_mandelbrot_set(
     :param threading.Event stop_signal: when this becomes `True`, stop and return the Mandelbrot set so far
     :return None:
     """
-    # I cannot get this to work as it messes up gRPC and/or Pub/Sub even when I use locks on the publisher.
-    # analysis.set_up_periodic_monitor_message(
-    #     create_monitor_message = lambda: {"x": x_old, "y": y_old, "z": iteration},
-    #     period = monitor_message_period,
-    # )
+    if not analysis._periodic_monitor_message_sender:
+        analysis.set_up_periodic_monitor_message(
+            create_monitor_message=lambda: {"x": x_old, "y": y_old, "z": iteration},
+            period=monitor_message_period,
+        )
 
     # Calculate heights until the stop signal is received.
     for i, x in enumerate(x_array):
@@ -36,10 +36,6 @@ def generate_mandelbrot_set(
             x_old = 0
             y_old = 0
             iteration = 1
-
-            # This ends up sending too many monitor messages and then no other messages reach the parent.
-            # if i % 1e9 == 0:
-            #     analysis.send_monitor_message({"x": x_old, "y": y_old, "z": iteration})
 
             while (iteration <= number_of_iterations) and (x_old**2 + y_old**2 < 4):
                 x_new = x_old**2 - y_old**2 + x
