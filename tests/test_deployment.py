@@ -24,7 +24,12 @@ class TestCloudRunDeployment(TestCase):
     def test_cloud_run_deployment_in_duration_mode(self):
         """Test that the service deployed on Cloud Run can be run in duration mode."""
         test_id = str(uuid.uuid4())
-        answer = self.child.ask(input_values={"test_id": test_id, "max_duration": 10}, question_uuid=test_id)
+
+        answer = self.child.ask(
+            input_values={"test_id": test_id, "max_duration": 15},
+            question_uuid=test_id,
+            handle_monitor_message=print,
+        )
 
         # Check the outputs are `None`.
         self.assertEqual(answer, {"output_values": {"data": None, "layout": None}, "output_manifest": None})
@@ -32,7 +37,12 @@ class TestCloudRunDeployment(TestCase):
     def test_cloud_run_deployment_in_grid_size_mode(self):
         """Test that the service deployed on Cloud Run can be run in grid size mode."""
         test_id = str(uuid.uuid4())
-        answer = self.child.ask(input_values={"test_id": test_id, "width": 200, "height": 100}, question_uuid=test_id)
+
+        answer = self.child.ask(
+            input_values={"test_id": test_id, "width": 200, "height": 100},
+            question_uuid=test_id,
+            handle_monitor_message=print,
+        )
 
         # Check the outputs are `None`.
         self.assertEqual(answer, {"output_values": {"data": None, "layout": None}, "output_manifest": None})
