@@ -3,8 +3,8 @@ services:
     namespace: octue
     app_source_path: exa_foo_fighting_service
     app_configuration_path: app_configuration.json
-    project_name: octue-amy
-    region: europe-west2
+    project_name: octue-exa
+    region: europe-west1
     repository_owner: octue
     repository_name: exa-foo-fighting-service
     memory: 1Gi
