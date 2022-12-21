@@ -143,13 +143,16 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true'}}
         uses: mxschmitt/action-tmate@v3
 
+      - name: Get default Octue Cloud Run Dockerfile
+        run: wget https://raw.githubusercontent.com/octue/octue-sdk-python/devops/improve-deployment-dockerfile/octue/cloud/deployment/google/cloud_run/Dockerfile
+
       - name: Push container with latest and version tags
         # Note: We don't push containers with shas because we'd end up with terabytes in storage (an image for every commit)
         uses: docker/build-push-action@v2
         with:
           context: .
           platforms: linux/amd64
-          file: .gcloud/cloud-run/Dockerfile
+          file: ./Dockerfile
           push: true
           tags: |
             ${{ needs.info.outputs.image_version_artefact}}
