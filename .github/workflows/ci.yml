@@ -1,17 +1,13 @@
-# This workflow tests and releases a new version of the package, then publishes it to PyPi and the
-# octue/octue-sdk-python Docker Hub repository.
+# This workflow tests a new version of the service.
 
 name: ci
 
 # Only trigger when a pull request into main branch is merged.
 on:
   pull_request:
-    branches-ignore:
-      - main
 
 jobs:
   run-tests:
-    if: "github.event.pull_request.merged == true"
     runs-on: ubuntu-latest
     env:
       USING_COVERAGE: "3.9"
