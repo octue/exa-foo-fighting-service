@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "exa-foo-fighting-service"
-version = "0.1.1"
+version = "0.2.0"
 description = ""
 authors = ["Marcus Lugg <cortado.codes@protonmail.com>"]
 readme = "README.md"
@@ -8,7 +8,7 @@ packages = [{include = "exa_foo_fighting_service"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-octue = { git = "https://github.com/octue/octue-sdk-python", rev = "fix/fix-non-returning-cloud-run-services"}
+octue = { git = "https://github.com/octue/octue-sdk-python", rev = "publish-answers-to-question-topic-2"}
 numpy = "^1.23.5"
 
 
