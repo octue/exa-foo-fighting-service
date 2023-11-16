@@ -1,10 +1,9 @@
-# This workflow tests a new version of the service.
-
 name: ci
 
-# Only trigger when a pull request into main branch is merged.
 on:
-  pull_request:
+  push:
+    branches-ignore:
+      - main
 
 jobs:
   run-tests:
