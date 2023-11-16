@@ -111,10 +111,10 @@ jobs:
         with:
           env_vars: |
             OCTUE_SERVICE_NAMESPACE=octue
-            OCTUE_SERVICE_NAME=$${{ needs.info.outputs.gcp_resource_affix }}-${{ needs.info.outputs.gcp_service }}
+            OCTUE_SERVICE_NAME=$${{ needs.info.outputs.gcp_resource_affix }}-${{ needs.info.outputs.gcp_service_name }}
             OCTUE_SERVICE_REVISION_TAG=${{ needs.info.outputs.version }}
             COMPUTE_PROVIDER=GOOGLE_CLOUD_RUN
-          service: ${{ needs.info.outputs.gcp_resource_affix }}-${{ needs.info.outputs.gcp_service }}
+          service: ${{ needs.info.outputs.gcp_resource_affix }}-${{ needs.info.outputs.gcp_service_name }}
           image: ${{ needs.info.outputs.image_version_artifact }}
           region: ${{ needs.info.outputs.gcp_region }}
           tag: v${{ needs.info.outputs.version_slug }}
@@ -128,6 +128,6 @@ jobs:
         with:
           project_name: ${{ needs.info.outputs.gcp_project_name }}
           service_namespace: octue
-          service_name: ${{ needs.info.outputs.gcp_resource_affix }}-${{ needs.info.outputs.gcp_service }}
+          service_name: ${{ needs.info.outputs.gcp_resource_affix }}-${{ needs.info.outputs.gcp_service_name }}
           service_revision_tag: ${{ needs.info.outputs.version }}
           push_endpoint: ${{ steps.deploy_service.outputs.url }}
