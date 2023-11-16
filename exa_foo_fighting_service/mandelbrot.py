@@ -24,7 +24,7 @@ def generate_mandelbrot_set(
     :param threading.Event stop_signal: when this becomes `True`, stop and return the Mandelbrot set so far
     :return None:
     """
-    if not analysis._periodic_monitor_message_sender:
+    if not analysis._periodic_monitor_message_sender_threads:
         analysis.set_up_periodic_monitor_message(
             create_monitor_message=lambda: {"x": x_old, "y": y_old, "z": iteration},
             period=monitor_message_period,
