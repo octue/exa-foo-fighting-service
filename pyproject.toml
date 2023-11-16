@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "exa-foo-fighting-service"
-version = "0.2.0"
+version = "0.2.1"
 description = ""
 authors = ["Marcus Lugg <cortado.codes@protonmail.com>"]
 readme = "README.md"
