@@ -17,7 +17,7 @@ apply_log_handler()
 class TestCloudRunDeployment(TestCase):
     # This is the service ID of the example service deployed to Google Cloud Run.
     child = Child(
-        id="octue/exa-foo-fighting-service:purring-peccary",
+        id="octue/exa-foo-fighting-service:0.2.0",
         backend={"name": "GCPPubSubBackend", "project_name": os.environ["TEST_PROJECT_NAME"]},
     )
 
