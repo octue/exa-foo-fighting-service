@@ -138,4 +138,4 @@ jobs:
           service_namespace: octue
           service_name: ${{ needs.info.outputs.gcp_resource_affix }}-${{ needs.info.outputs.gcp_service_name }}
           service_revision_tag: ${{ needs.info.outputs.version }}
-          service_registry_endpoint: https://exa-main-server-fhngvhbkyq-ew.a.run.app/example-app-urls/services
+          service_registry_endpoint: https://exa-main-server-fhngvhbkyq-ew.a.run.app/example-app-urls/integrations/octue/services
