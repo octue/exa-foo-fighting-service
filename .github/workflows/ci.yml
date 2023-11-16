@@ -139,20 +139,3 @@ jobs:
           service_name: ${{ needs.info.outputs.gcp_resource_affix }}-${{ needs.info.outputs.gcp_service_name }}
           service_revision_tag: ${{ needs.info.outputs.version }}
           service_registry_endpoint: https://exa-main-server-fhngvhbkyq-ew.a.run.app/example-app-urls/services
-
-  release:
-    # This job will only run if the PR has been merged (and not closed without merging).
-    if: "github.event.pull_request.merged == true"
-    runs-on: ubuntu-latest
-    needs: [info, build]
-    steps:
-      - name: Create release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, no need to create your own.
-        with:
-          tag_name: ${{ needs.info.outputs.version }}
-          release_name: ${{ github.event.pull_request.title }}
-          body: ${{ github.event.pull_request.body }}
-          draft: false
-          prerelease: false
