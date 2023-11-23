@@ -2,7 +2,7 @@
 name = "exa-foo-fighting-service"
 version = "0.2.1"
 description = ""
-authors = ["Marcus Lugg <cortado.codes@protonmail.com>"]
+authors = ["Marcus Lugg <marcus@octue.com>"]
 readme = "README.md"
 packages = [{include = "exa_foo_fighting_service"}]
 
